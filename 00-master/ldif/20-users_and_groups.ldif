@@ -2,25 +2,25 @@
 # Use with ~$ ldapadd -x -D cn=admin,dc=... -W -f 20-users_and_groups.ldif
 #
 # Create an LDAP Suffix for User accounts
-dn: ou=People,dc=example,dc=com
+dn: ou=People,dc=sernafa,dc=local
 objectClass: organizationalUnit
 ou: People
 
 # Create an LDAP Suffix for posixGroup entries
 # These will be groups on Linux systems
-dn: ou=Groups,dc=example,dc=com
+dn: ou=Groups,dc=sernafa,dc=local
 objectClass: organizationalUnit
 ou: Groups
 
 # Create an LDAP Suffix for groupOfNames entires
 # These will be used for system access permissions
-dn: ou=Lists,dc=example,dc=com
+dn: ou=Lists,dc=sernafa,dc=local
 objectClass: organizationalUnit
 ou: Lists
 
 # Create an LDAP Group 'user1'
 # Group IDs (GID) will start at 10000
-dn: cn=user1,ou=Groups,dc=example,dc=com
+dn: cn=user1,ou=Groups,dc=sernafa,dc=local
 objectClass: posixGroup
 cn: user1
 gidNumber: 10000
@@ -34,7 +34,7 @@ memberUid: user1
 #          posixGroup with matching uidNumber and gidNumber
 # Even Further: 'user1' is specified as a member of 'admin' and will have
 #               SUDO access on all Client systems
-dn: cn=admin,ou=Groups,dc=example,dc=com
+dn: cn=admin,ou=Groups,dc=sernafa,dc=local
 objectClass: posixGroup
 cn: admin
 gidNumber: 15000
@@ -43,7 +43,7 @@ memberUid: user1
 
 # Create an LDAP User `user1`
 # User IDs (UID) will start at 10000
-dn: uid=user1,ou=People,dc=example,dc=com
+dn: uid=user1,ou=People,dc=sernafa,dc=local
 objectClass: inetOrgPerson
 objectClass: posixAccount
 objectClass: shadowAccount
@@ -71,11 +71,11 @@ maildrop: user1
 # Note: This is a groupofNames which will NOT show on Linux Clients
 #       It WILL support memberOf lookups, and will be used by SSSD for
 #       controlling Linux Client Access
-dn: cn=linux,ou=Lists,dc=example,dc=com
+dn: cn=linux,ou=Lists,dc=sernafa,dc=local
 objectClass: groupofNames
 cn: linux
 description: Linux Users
-member: uid=user1,ou=People,dc=example,dc=com
+member: uid=user1,ou=People,dc=sernafa,dc=local
 
 # Create an LDAP List `git`
 # Note: This is a groupofNames which will NOT show on Linux Clients
@@ -83,11 +83,11 @@ member: uid=user1,ou=People,dc=example,dc=com
 #       supporting Clients such as Gitea or Gogs to control user access
 # Further: `user1` is specified as a member and will have access to any service
 #          configured to use this LDAP List for access
-dn: cn=git,ou=Lists,dc=example,dc=com
+dn: cn=git,ou=Lists,dc=sernafa,dc=local
 objectClass: groupOfNames
 cn: git
 description: git Users
-member: uid=user1,ou=People,dc=example,dc=com
+member: uid=user1,ou=People,dc=sernafa,dc=local
 
 # Create an LDAP List 'admin'
 # Note: This is a groupofNames which will NOT show on Linux Clients
@@ -95,8 +95,8 @@ member: uid=user1,ou=People,dc=example,dc=com
 #       supporting Clients such as Gitea or Gogs to control admin access
 # Further: `user1` is specified as a member and will have administrative access
 #          to any service configured to use this LDAP List for access
-dn: cn=admin,ou=Lists,dc=example,dc=com
+dn: cn=admin,ou=Lists,dc=sernafa,dc=local
 objectClass: groupOfNames
 cn: admin
 description: Admin Users
-member: uid=user1,ou=People,dc=example,dc=com
+member: uid=user1,ou=People,dc=sernafa,dc=local

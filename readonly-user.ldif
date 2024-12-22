@@ -1,0 +1,7 @@
+dn: cn=ldap-ro,dc=sernafa,dc=local
+changetype: add
+cn: ldap-ro
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+userPassword: {SSHA}wmXLsib6VjUwYiOMd9IwgC/Uypsk/+gj
+description: LDAP read only user

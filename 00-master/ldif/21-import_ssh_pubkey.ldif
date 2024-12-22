@@ -1,7 +1,7 @@
 # Add SSH key for LDAP User `user1`
 # Use with ~$ ldapmodify -x -D "cn=admin,dc=..." -W -f 21-import_ssh_pubkey.ldif
 #
-dn: uid=user1,ou=People,dc=example,dc=me
+dn: uid=user1,ou=People,dc=sernafa,dc=local
 changetype: modify
 add: objectClass
 objectClass: ldapPublicKey
